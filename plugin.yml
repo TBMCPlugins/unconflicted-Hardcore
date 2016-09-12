@@ -1,0 +1,10 @@
+ main: iie.HelloWorldPlugin
+ version: 1.0.0
+ name: HelloWorldPlugin
+ commands:
+   hardcore:
+     description: Command that teleports you to hardcore world
+   HelloWorld:
+     description: Command that says Hello World!
+   debugRTP:
+     description: Command that randomly teleports someone inside the hardcore world
