@@ -19,7 +19,7 @@ public class JoinListener implements Listener {
 		
 		Player player = JoinEvent.getPlayer();
 		String playername = (String) player.getName();
-				
+		
 		
 		if (HelloWorldPlugin.hardcoreInvite.getScore(playername) == null){			//null check
 			HelloWorldPlugin.hardcoreInvite.getScore(playername).setScore(0);		//convert null to 0
@@ -42,6 +42,9 @@ public class JoinListener implements Listener {
 		}else if (deathTime == 0){
 			return;
 		}
+		
+		BoundaryListener.moveDelay.put(playername, currentTime);
+		BoundaryListener.boundaryWarning.put(playername, true);
 		
 		
 		//HelloWorldPlugin.deathMap.put(playername, String.valueOf(HelloWorldPlugin.hardcoreTimeDead.getScore(playername).getScore()));
