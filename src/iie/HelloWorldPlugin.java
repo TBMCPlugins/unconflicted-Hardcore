@@ -11,6 +11,8 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
 import alisolarflare.RandomTP;
+import alisolarflare.listeners.ConflictCompassCraftingListener;
+import alisolarflare.listeners.DiamondArmorBlocker;
 
 
 public class HelloWorldPlugin extends JavaPlugin {
@@ -48,6 +50,8 @@ public class HelloWorldPlugin extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new JoinListener(this), this);
 		getServer().getPluginManager().registerEvents(new DeathListener(this), this);
 		getServer().getPluginManager().registerEvents(new BoundaryListener(this), this);
+		getServer().getPluginManager().registerEvents(new DiamondArmorBlocker(), this);
+		getServer().getPluginManager().registerEvents(new ConflictCompassCraftingListener(), this);
 
 		
 	}
