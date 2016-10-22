@@ -10,6 +10,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
+import alisolarflare.RandomTP;
+
 
 public class HelloWorldPlugin extends JavaPlugin {
 	
@@ -51,6 +53,7 @@ public class HelloWorldPlugin extends JavaPlugin {
 	}
 	public void registerCommands(){
 		getCommand("hardcore").setExecutor(new HelloWorld(this));
+		getCommand("debugRTP").setExecutor(new RandomTP(this));
 	}
 
 }
