@@ -1,6 +1,6 @@
  main: iie.HelloWorldPlugin
  version: 1.0.0
- name: HelloWorldPlugin
+ name: ButtonHardcorePlugin
  commands:
    hardcore:
      description: Command that teleports you to hardcore world
