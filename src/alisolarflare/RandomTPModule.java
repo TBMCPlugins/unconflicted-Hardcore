@@ -83,38 +83,6 @@ public class RandomTPModule{
 		if(!eastUsed) directions.add("east");
 		dir = directions.get((int) Math.floor(Math.random() * directions.size()));
 		
-		/*
-		for(int i = 0; i < 1000; i++){
-			double randomDirection = Math.random();
-			if (randomDirection < 0.25){
-				if(!northUsed){
-					northUsed = true;
-					dir = "north";
-					break;
-				}
-			}else if(randomDirection < 0.50){
-				if(!eastUsed){
-					eastUsed = true;
-					dir = "east";
-					break;
-				}
-			}else if(randomDirection < 0.75){
-				if(!southUsed){
-					southUsed = true;
-					dir = "south";
-					break;
-				}
-			}else{
-				if(!westUsed){
-					westUsed = true;
-					dir = "west";
-					break;
-				}
-				
-			}
-		}*/
-		
-		
 		//TELEPORT - teleports player to the conflict point
 		switch(dir){
 			case "north":
