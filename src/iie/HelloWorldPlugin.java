@@ -28,25 +28,22 @@ public class HelloWorldPlugin extends JavaPlugin {
 	public static AbstractMap<String,String> deathMap = new HashMap<String,String>();
 	
 	public void onEnable(){
-		
-		iie = Bukkit.getServer().getOfflinePlayer((UUID) UUID.fromString("633d0de1-4a67-46ff-bd8a-004fa8ce4858")).getPlayer();
-		
+				
 		board = Bukkit.getServer().getScoreboardManager().getMainScoreboard();			
-		if (board.getObjective("hardcoreTimeDead") != null){							//null check hardcoreTimeDead
+		if (board.getObjective("hardcoreTimeDead") != null)								//null check hardcoreTimeDead
 			hardcoreTimeDead = board.getObjective("hardcoreTimeDead");
-		}else{
+		else
 			hardcoreTimeDead = board.registerNewObjective("hardcoreTimeDead", "dummy");
-		}
-		if (board.getObjective("hardcoreInvite") != null){								//null check hardcoreInvite
+		
+		if (board.getObjective("hardcoreInvite") != null)								//null check hardcoreInvite
 			hardcoreInvite = board.getObjective("hardcoreInvite");
-		}else{
+		else
 			hardcoreInvite = board.registerNewObjective("hardcoreInvite", "dummy");
-		}
-		if (board.getObjective("hardcoreOutBound") != null){								//null check hardcoreOutBound
+		
+		if (board.getObjective("hardcoreOutBound") != null)								//null check hardcoreOutBound
 			hardcoreOutBound = board.getObjective("hardcoreOutBound");
-		}else{
+		else
 			hardcoreOutBound = board.registerNewObjective("hardcoreOutBound", "dummy");
-		}
 		
 		registerCommands();
 		getServer().getPluginManager().registerEvents(new JoinListener(this), this);
