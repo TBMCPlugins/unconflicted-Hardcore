@@ -16,7 +16,7 @@ import alisolarflare.listeners.ConflictCompassCraftingListener;
 import alisolarflare.listeners.DiamondArmorBlocker;
 
 
-public class HelloWorldPlugin extends JavaPlugin {
+public class ButtonHardcorePlugin extends JavaPlugin {
 	
 	public static Player iie;
 	

@@ -11,8 +11,8 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class DeathListener implements Listener {
 	
-	HelloWorldPlugin plugin;
-	public DeathListener(HelloWorldPlugin plugin){
+	ButtonHardcorePlugin plugin;
+	public DeathListener(ButtonHardcorePlugin plugin){
 		this.plugin = plugin;
 	}
 	
@@ -31,8 +31,8 @@ public class DeathListener implements Listener {
 		
 		if (Objects.equals(worldString, "hardcore")){
 						
-				HelloWorldPlugin.hardcoreTimeDead.getScore(playername).setScore(currentTime);
-				HelloWorldPlugin.hardcoreInvite.getScore(playername).setScore(0);
+				ButtonHardcorePlugin.hardcoreTimeDead.getScore(playername).setScore(currentTime);
+				ButtonHardcorePlugin.hardcoreInvite.getScore(playername).setScore(0);
 				
 				//player.sendMessage("death detected");
 				//player.sendMessage("hardcoreTimeDead score = " + String.valueOf(HelloWorldPlugin.hardcoreTimeDead.getScore(playername).getScore()));

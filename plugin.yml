@@ -1,5 +1,5 @@
- main: iie.HelloWorldPlugin
- version: 1.0.0
+ main: iie.ButtonHardcorePlugin
+ version: 1.0.1
  name: ButtonHardcorePlugin
  commands:
    hardcore:
