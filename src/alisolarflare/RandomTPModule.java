@@ -1,33 +1,31 @@
 package alisolarflare;
 
+import java.util.HashMap;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import iie.HelloWorldPlugin;
 
-public class RandomTP implements CommandExecutor{
-	
-	private int conflictX;
-	private int conflictZ;
-	private int conflictRadius = 70;
-	private boolean northUsed;
-	private boolean southUsed;
-	private boolean eastUsed;
-	private boolean westUsed;
+public class RandomTPModule{
+	private static int conflictX;
+	private static int conflictZ;
+	private static int conflictRadius = 70;
+	private static boolean northUsed;
+	private static boolean southUsed;
+	private static boolean eastUsed;
+	private static boolean westUsed;
 	@SuppressWarnings("unused")
 	private HelloWorldPlugin helloWorldPlugin;
-	public RandomTP(HelloWorldPlugin helloWorldPlugin) {
+	public RandomTPModule(HelloWorldPlugin helloWorldPlugin) {
 		this.helloWorldPlugin = helloWorldPlugin;
 	}
 
 	//every 4 players who use it will be teleported near each other.
-	//ex. iie > 1200, ali -> 1210, byz -> 1190, charles -> 1195, wind -> 300, zan -> 310, etc
-	public void conflictRtp(Player player, World world, Location minLocation, Location maxLocation){
+	//ex. iie 2000, ali 2010, byz 2005, charles 1995, wind 300, zan 310, etc
+	public static void conflictRtp(Player player, World world, Location minLocation, Location maxLocation){
 		//INIT - xDifference, xAverage
 		int xdifference = minLocation.getBlockX() - maxLocation.getBlockX();
 		int xAverage = (int) Math.floor(minLocation.getBlockX() + maxLocation.getBlockX() / 2);
@@ -59,10 +57,10 @@ public class RandomTP implements CommandExecutor{
 				//TRANSFER - data to class
 				if (groundIsSafe && (northIsSafe || southIsSafe || eastIsSafe || westIsSafe)){
 					
-					northUsed = northIsSafe;
-					eastUsed = eastIsSafe;
-					westUsed = westIsSafe;
-					southUsed = southIsSafe;
+					northUsed = !northIsSafe;
+					eastUsed = !eastIsSafe;
+					westUsed = !westIsSafe;
+					southUsed = !southIsSafe;
 					conflictX = attemptedX;
 					conflictZ = attemptedZ;
 					
@@ -74,28 +72,28 @@ public class RandomTP implements CommandExecutor{
 		
 		String dir = "north";
 		//CHOOSES A RANDOM DIRECTION
-		for(int i = 0; i < 1000; i++){
+		for(int i = 0; i < 200; i++){
 			double randomDirection = Math.random();
 			if (randomDirection < 0.25){
-				if(northUsed){
+				if(!northUsed){
 					northUsed = true;
 					dir = "north";
 					break;
 				}
 			}else if(randomDirection < 0.50){
-				if(eastUsed){
+				if(!eastUsed){
 					eastUsed = true;
 					dir = "east";
 					break;
 				}
 			}else if(randomDirection < 0.75){
-				if(southUsed){
+				if(!southUsed){
 					southUsed = true;
 					dir = "south";
 					break;
 				}
 			}else{
-				if(westUsed){
+				if(!westUsed){
 					westUsed = true;
 					dir = "west";
 					break;
@@ -108,19 +106,15 @@ public class RandomTP implements CommandExecutor{
 		//TELEPORT - teleports player to the conflict point
 		switch(dir){
 			case "north":
-				northUsed = false;
 				player.teleport(world.getHighestBlockAt(conflictX, conflictZ - conflictRadius).getLocation());
 				break;
 			case "east":
-				eastUsed = false;
 				player.teleport(world.getHighestBlockAt(conflictX + conflictRadius, conflictZ).getLocation());
 				break;
 			case "south":
-				southUsed = false;
 				player.teleport(world.getHighestBlockAt(conflictX, conflictZ + conflictRadius).getLocation());
 				break;
 			case "west":
-				westUsed = false;
 				player.teleport(world.getHighestBlockAt(conflictX - conflictRadius, conflictZ).getLocation());
 				break;
 			default:
@@ -130,7 +124,7 @@ public class RandomTP implements CommandExecutor{
 	}
 
 	//Randomly teleports a player, into the hardcore world
-	public void rtp(Player player, World world, Location minLocation, Location maxLocation){
+	public static void rtp(Player player, World world, Location minLocation, Location maxLocation){
 		player.sendMessage("TELEPORT INITIATED");
 		player.sendMessage("minLocation: " + minLocation.toString());
 		player.sendMessage("maxLocation: " + maxLocation.toString());
@@ -162,22 +156,5 @@ public class RandomTP implements CommandExecutor{
 
 			//player.teleport(arg0)
 		}
-	}
-
-	@Override
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		if(!(sender instanceof Player)){
-			sender.sendMessage("You must be a Player to use this command!");
-			sender.sendMessage(sender.toString());
-			return false;
-		}
-		Player player = (Player) sender;
-		if(player.getWorld().getName() != "hardcore"){
-			sender.sendMessage("You must be in the hardcore world to use this command!");
-			sender.sendMessage("Current World: " + player.getWorld().getName());
-			return false;
-		}
-		rtp(player, player.getWorld(), new Location(player.getWorld(), 644, 65, -944), new Location(player.getWorld(), 1700, 65, 464));
-		return false;
 	}
 }
