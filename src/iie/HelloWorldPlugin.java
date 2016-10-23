@@ -51,7 +51,7 @@ public class HelloWorldPlugin extends JavaPlugin {
 		
 		getServer().getPluginManager().registerEvents(new DiamondArmorBlocker(), this);
 		getServer().getPluginManager().registerEvents(new ConflictCompassCraftingListener(), this);
-		getServer().getPluginManager().registerEvents(new CompassLobby(), this);
+		//getServer().getPluginManager().registerEvents(new CompassLobby(), this);
 
 		
 	}
