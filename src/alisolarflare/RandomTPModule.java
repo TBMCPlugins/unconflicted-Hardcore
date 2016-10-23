@@ -34,7 +34,7 @@ public class RandomTPModule{
 
 		//INIT - zDifference, zAverage
 		int zdifference = minLocation.getBlockX() - maxLocation.getBlockY();
-		int zAverage = (int) Math.floor(minLocation.getBlockZ() + maxLocation.getBlockZ());
+		int zAverage = (int) Math.floor(minLocation.getBlockZ() + maxLocation.getBlockZ() / 2);
 		
 		//CHECK - Reset Cycle
 		if (!(northUsed || southUsed || eastUsed || westUsed)){
