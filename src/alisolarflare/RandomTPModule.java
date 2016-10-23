@@ -8,7 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
-import iie.HelloWorldPlugin;
+import iie.ButtonHardcorePlugin;
 
 public class RandomTPModule{
 	private static int conflictX;
@@ -19,8 +19,8 @@ public class RandomTPModule{
 	private static boolean eastUsed;
 	private static boolean westUsed;
 	@SuppressWarnings("unused")
-	private HelloWorldPlugin helloWorldPlugin;
-	public RandomTPModule(HelloWorldPlugin helloWorldPlugin) {
+	private ButtonHardcorePlugin helloWorldPlugin;
+	public RandomTPModule(ButtonHardcorePlugin helloWorldPlugin) {
 		this.helloWorldPlugin = helloWorldPlugin;
 	}
 

@@ -14,8 +14,8 @@ import org.bukkit.entity.Player;
 
 public class HelloWorld implements CommandExecutor {
 	
-	HelloWorldPlugin plugin;
-	public HelloWorld(HelloWorldPlugin plugin){
+	ButtonHardcorePlugin plugin;
+	public HelloWorld(ButtonHardcorePlugin plugin){
 		this.plugin = plugin;
 	}
 	
@@ -41,8 +41,8 @@ public class HelloWorld implements CommandExecutor {
 			int currentTime = (int) ((System.currentTimeMillis())/1000);
 			int deathTime = 0;
 						
-			if (HelloWorldPlugin.hardcoreTimeDead.getScore(playername) != null)					//null check - if score exists
-				deathTime = HelloWorldPlugin.hardcoreTimeDead.getScore(playername).getScore();  //set deathTime to that score
+			if (ButtonHardcorePlugin.hardcoreTimeDead.getScore(playername) != null)					//null check - if score exists
+				deathTime = ButtonHardcorePlugin.hardcoreTimeDead.getScore(playername).getScore();  //set deathTime to that score
 			
 			
 			

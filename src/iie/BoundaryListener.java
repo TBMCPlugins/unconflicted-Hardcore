@@ -14,8 +14,8 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 public class BoundaryListener implements Listener {
 	
-	HelloWorldPlugin plugin;
-	public BoundaryListener(HelloWorldPlugin plugin){
+	ButtonHardcorePlugin plugin;
+	public BoundaryListener(ButtonHardcorePlugin plugin){
 		this.plugin = plugin;
 	}
 	
