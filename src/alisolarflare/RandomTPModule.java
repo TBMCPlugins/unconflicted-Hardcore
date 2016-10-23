@@ -1,5 +1,6 @@
 package alisolarflare;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Location;
@@ -26,6 +27,7 @@ public class RandomTPModule{
 	//every 4 players who use it will be teleported near each other.
 	//ex. iie 2000, ali 2010, byz 2005, charles 1995, wind 300, zan 310, etc
 	public static void conflictRtp(Player player, World world, Location minLocation, Location maxLocation){
+		
 		//INIT - xDifference, xAverage
 		int xdifference = minLocation.getBlockX() - maxLocation.getBlockX();
 		int xAverage = (int) Math.floor(minLocation.getBlockX() + maxLocation.getBlockX() / 2);
@@ -35,7 +37,7 @@ public class RandomTPModule{
 		int zAverage = (int) Math.floor(minLocation.getBlockZ() + maxLocation.getBlockZ());
 		
 		//CHECK - Reset Cycle
-		if ((northUsed || southUsed || eastUsed || westUsed) == false){
+		if (!(northUsed || southUsed || eastUsed || westUsed)){
 			
 			//Tries 20 times to find a location
 			for(int i = 0; i < 20; i ++){
@@ -50,9 +52,10 @@ public class RandomTPModule{
 				//CHECKS - if ground is safe
 				boolean groundIsSafe = world.getHighestBlockAt(attemptedX, attemptedZ).getType() != Material.WATER;
 				boolean northIsSafe = world.getHighestBlockAt(attemptedX, attemptedZ-cr).getType() != Material.WATER;
-				boolean eastIsSafe = world.getHighestBlockAt(attemptedX+cr, attemptedZ).getType() != Material.WATER;
 				boolean southIsSafe = world.getHighestBlockAt(attemptedX, attemptedZ+cr).getType() != Material.WATER;
 				boolean westIsSafe = world.getHighestBlockAt(attemptedX-cr, attemptedZ).getType() != Material.WATER;
+				boolean eastIsSafe = world.getHighestBlockAt(attemptedX+cr, attemptedZ).getType() != Material.WATER;
+
 				
 				//TRANSFER - data to class
 				if (groundIsSafe && (northIsSafe || southIsSafe || eastIsSafe || westIsSafe)){
@@ -71,37 +74,14 @@ public class RandomTPModule{
 		}
 		
 		String dir = "north";
+
 		//CHOOSES A RANDOM DIRECTION
-		for(int i = 0; i < 200; i++){
-			double randomDirection = Math.random();
-			if (randomDirection < 0.25){
-				if(!northUsed){
-					northUsed = true;
-					dir = "north";
-					break;
-				}
-			}else if(randomDirection < 0.50){
-				if(!eastUsed){
-					eastUsed = true;
-					dir = "east";
-					break;
-				}
-			}else if(randomDirection < 0.75){
-				if(!southUsed){
-					southUsed = true;
-					dir = "south";
-					break;
-				}
-			}else{
-				if(!westUsed){
-					westUsed = true;
-					dir = "west";
-					break;
-				}
-				
-			}
-		}
-		
+		ArrayList<String> directions = new ArrayList<String>();
+		if(!northUsed) directions.add("north");
+		if(!southUsed) directions.add("south");
+		if(!westUsed) directions.add("west");
+		if(!eastUsed) directions.add("east");
+		dir = directions.get((int) Math.floor(Math.random() * directions.size()));
 		
 		//TELEPORT - teleports player to the conflict point
 		switch(dir){
